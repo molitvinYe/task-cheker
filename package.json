@@ -9,12 +9,14 @@
   ],
   "dependencies": {
     "@craco/craco": "^6.4.5",
+    "lodash.isequal": "^4.5.0",
     "react": "17.0.*",
     "react-dom": "17.0.*",
     "react-native-web": "0.18.*",
     "react-scripts": "^4.0.0"
   },
   "devDependencies": {
+    "@types/lodash.isequal": "^4.5.6",
     "@types/react": "^18.0.17",
     "@types/react-native": "^0.69.5",
     "cross-env": "^7.0.3",
