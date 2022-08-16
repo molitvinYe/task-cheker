@@ -10,8 +10,9 @@ import styles from './TasksListView.styles'
 
 export const TasksListView: React.FC<{
   tasks: Task[]
+  projectName: string
   onTaskPress: (tasks: Task) => void
-}> = ({ tasks, onTaskPress }) => {
+}> = ({ tasks, projectName, onTaskPress }) => {
   const renderItem = useCallback(
     ({ item }: { item: Task }) => <TaskItemView task={item} onPress={onTaskPress} />,
     []
@@ -20,7 +21,7 @@ export const TasksListView: React.FC<{
   return (
     <FlatList
       data={tasks}
-      ListHeaderComponent={<Header mb={12}>Tasks</Header>}
+      ListHeaderComponent={<Header mb={12}>{projectName}</Header>}
       renderItem={renderItem}
       style={styles.list}
     />

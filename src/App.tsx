@@ -12,6 +12,7 @@ import styles from './App.styles'
 
 function App() {
   const [projects, setProjects] = useState<Project[]>(PROJECTS)
+  const [activeProjectName, setActiveProjectName] = useState<string>('All')
 
   const defaultTasks = useMemo(() => {
     return projects.map(project => project.tasks).flat()
@@ -20,6 +21,11 @@ function App() {
   const [tasks, setTasks] = useState<Task[]>(defaultTasks)
 
   const onProjectPress = useCallback((project: Project) => {
+    setActiveProjectName(prev => {
+      const isSecondPress = prev === project.name
+      return isSecondPress ? 'All' : project.name
+    })
+
     setTasks(prev => {
       const isSecondPress = isEqual(prev, project.tasks)
       return isSecondPress ? defaultTasks : project.tasks
@@ -46,7 +52,7 @@ function App() {
         <ProjectsListView projects={projects} onProjectPress={onProjectPress} />
       </View>
       <View style={styles.column}>
-        <TasksListView tasks={tasks} onTaskPress={onTaskPress} />
+        <TasksListView tasks={tasks} projectName={activeProjectName} onTaskPress={onTaskPress} />
       </View>
     </View>
   )
