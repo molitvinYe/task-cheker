@@ -21,7 +21,7 @@ export const TaskItemView: React.FC<{
             {task.description}
           </Text>
         </View>
-        <View style={styles.checkedCircle}></View>
+        {task.completed ? <View style={styles.circleIsActive} /> : <View style={styles.circle} />}
       </Card>
     </Pressable>
   )

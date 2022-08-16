@@ -27,7 +27,17 @@ function App() {
   }, [])
 
   const onTaskPress = useCallback((task: Task) => {
-    // TODO
+    const changedProjects = projects.map(project => {
+      project.tasks.map(({ name }, index) => {
+        if (name === task.name) {
+          task.completed
+            ? (project.tasks[index].completed = false)
+            : (project.tasks[index].completed = true)
+        }
+      })
+      return project
+    })
+    setProjects(changedProjects)
   }, [])
 
   return (
